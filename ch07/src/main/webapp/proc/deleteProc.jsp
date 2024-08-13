@@ -10,12 +10,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	
-	// 파일번호 수신
+	// 파일번호, 파일명 수신
 	String no = request.getParameter("no");
 	String s_name = request.getParameter("sname");
 	
 	// 데이터베이스 파일 정보 삭제
-	
 	// 데이터베이스 조회
 	String sname = null;
 	try{

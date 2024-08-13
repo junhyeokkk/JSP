@@ -26,13 +26,10 @@
 	//2단계 - 커넥션 풀에서 커넥션 객체 가져오기
 	DataSource ds = (DataSource) ctx.lookup("jdbc/studydb"); //커넥션 풀 이름 
 	Connection conn = ds.getConnection();
-	
 	//3단계 - SQL실행 객체 생성
 	Statement stmt = conn.createStatement();
-	
 	//4단계 - SQL실행
 	ResultSet rs = stmt.executeQuery("select * from filetest where `no` = "+ no);
-	
 	//5단계 - 결과처리
 	if(rs.next()){
 		vo = new FiletestVO();
@@ -43,11 +40,11 @@
 		vo.setSname(rs.getString(5));
 		vo.setRdate(rs.getString(6));
 	}
-	
 	//6단계 - 커넥션 반납
 	rs.close();
 	stmt.close();
 	conn.close();
+	
 	}catch(Exception e){
 		e.printStackTrace();
 	}

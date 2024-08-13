@@ -9,6 +9,9 @@
 		날짜 : 2024/08/12	
 		이름 : 최준혁
 		내용 : JSP 파일 업로드 실습하기
+	 
+	 	- 톰캣 context.xml > Context 태그에 allowCasualMultipartParsing="true" 설정
+	 	- 톰캣 server.xml > Connector 태그에 maxPostSize="10485760" 설정 (1024*1024*10 = 10MB)  
 	 -->
 </head>
 <body>

@@ -9,27 +9,26 @@
 <%
 	// 파일 업로드 경로 구하기 (실제 경로 .metadata)
 	String saveDirectory = application.getRealPath("/uploads");
-	System.out.println("saveDirectory : " + saveDirectory);	
 
 	// 파일 업로드 정보 구하기(전송될 파일 객체 Part)
 	Part part = request.getPart("fname");
 	String partHeader =	part.getHeader("content-disposition");
-	System.out.println("partHeader : "+ partHeader);
 	
 	// 파일명 추출
 	String[] partHeaders = partHeader.split("filename=");	
 	String originalFname = partHeaders[1].trim().replace("\"", ""); //파일명 ""들어간것 제거
 	
-	// 파일 저장
-	if(!originalFname.isEmpty()){
+	// 파일 저장 
+	if(!originalFname.isEmpty()){ //해당 파일명이 없으면 저장
 		part.write(saveDirectory + File.separator + originalFname);
 	}
 
 	// 중복될 수 없는 파일명으로 수정
 	int idx = originalFname.lastIndexOf(".");
 	String ext = originalFname.substring(idx); //확장자 추출
-	
 	String savedFname = UUID.randomUUID().toString()+ext;
+	
+	
 	System.out.println("savedFname : "+savedFname);
 	
 	// 파일명 수정
@@ -60,10 +59,6 @@
 		
 		//4단계
 		psmt.executeUpdate();
-		
-		
-		//5단계
-		
 		
 		//6단계
 		psmt.close();
