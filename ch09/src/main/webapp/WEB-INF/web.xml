@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>ch09</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  	<!-- 서블릿 등록 -->
+  <servlet>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<servlet-class>sub1.HelloServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+  	<servlet-name>WelcomeServlet</servlet-name>
+  	<servlet-class>sub1.WelcomeServlet</servlet-class>
+  </servlet>
+  
+    <!-- 서블릿 주소 맵핑 -->
+  <servlet-mapping>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<url-pattern>/hello.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>WelcomeServlet</servlet-name>
+  	<url-pattern>/welcome.do</url-pattern>
+  </servlet-mapping>
+  
+  	<!-- 필터 등록 및 주소 맵핑 -->
+  	<filter>
+  		<filter-name>FilterA</filter-name>
+  		<filter-class>sub2.FilterA</filter-class>
+  	</filter>
+  	<filter-mapping>
+  		<filter-name>FilterA</filter-name>
+  		<url-pattern>/*</url-pattern>
+  	</filter-mapping>
+  	
+  	<filter>
+  		<filter-name>FilterB</filter-name>
+  		<filter-class>sub2.FilterB</filter-class>
+  	</filter>
+  	<filter-mapping>
+  		<filter-name>FilterB</filter-name>
+  		<url-pattern>/hello.do</url-pattern>
+  		<url-pattern>/welcome.do</url-pattern>
+  	</filter-mapping>
+  	
+  	<!-- 리스너 등록 -->
+	<listener>
+		<listener-class>sub3.MyContextListener</listener-class>
+	</listener>  	
+</web-app>
